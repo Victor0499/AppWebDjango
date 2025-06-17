@@ -1,3 +1,40 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from .models import PerfilUsuario, Rutina, Ejercicio, RegistroRutina, EstadisticasUsuario, Comentario
+from .serializers import (
+    PerfilUsuarioSerializer,
+    RutinaSerializer,
+    EjercicioSerializer,
+    RegistroRutinaSerializer,
+    EstadisticasUsuarioSerializer,
+    ComentarioSerializer
+)
+from django.contrib.auth.models import User
+from .serializers import UserSerializer
 
-# Create your views here.
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class PerfilUsuarioViewSet(viewsets.ModelViewSet):
+    queryset = PerfilUsuario.objects.all()
+    serializer_class = PerfilUsuarioSerializer
+
+class RutinaViewSet(viewsets.ModelViewSet):
+    queryset = Rutina.objects.all()
+    serializer_class = RutinaSerializer
+
+class EjercicioViewSet(viewsets.ModelViewSet):
+    queryset = Ejercicio.objects.all()
+    serializer_class = EjercicioSerializer
+
+class RegistroRutinaViewSet(viewsets.ModelViewSet):
+    queryset = RegistroRutina.objects.all()
+    serializer_class = RegistroRutinaSerializer
+
+class EstadisticasUsuarioViewSet(viewsets.ModelViewSet):
+    queryset = EstadisticasUsuario.objects.all()
+    serializer_class = EstadisticasUsuarioSerializer
+
+class ComentarioViewSet(viewsets.ModelViewSet):
+    queryset = Comentario.objects.all()
+    serializer_class = ComentarioSerializer
